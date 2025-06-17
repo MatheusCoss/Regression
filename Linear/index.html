@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Correlação: Produção de Frutas vs. Temperatura</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .results {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #e67e22;
+        }
+        .conclusion {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+        .chart-container {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Análise de Correlação e Regressão</h1>
+        <p><strong>Tema:</strong> Análise da relação entre a produção de frutas (maçã, banana e laranja) e a temperatura ambiente.</p>
+
+        <section id="teoria">
+            <h2>1. Introdução Teórica</h2>
+            <p><strong>Correlação:</strong> É uma medida estatística que expressa a relação entre duas variáveis. O coeficiente de correlação de Pearson (r) quantifica a força e a direção de uma relação linear, variando de -1 (correlação negativa perfeita) a +1 (correlação positiva perfeita).</p>
+            <p><strong>Regressão Linear:</strong> É uma técnica usada para modelar a relação entre uma variável dependente (Y) e uma variável independente (X). O objetivo é encontrar a linha reta que melhor se ajusta aos dados, descrita pela equação $y = a + bx$.</p>
+        </section>
+
+        <section id="calculos">
+            <h2>2. Cálculos dos Coeficientes de Correlação</h2>
+            <p>A seguir, são apresentadas as tabelas com os cálculos manuais para cada fruta, correlacionando sua produção (Y) com a temperatura (X).</p>
+
+            <h3>🍎 Temperatura vs. Produção de Maçã</h3>
+            <table>
+                <thead>
+                    <tr><th>X (Temp)</th><th>Y (Maçã)</th><th>X²</th><th>Y²</th><th>XY</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>12</td><td>12</td><td>144</td><td>144</td><td>144</td></tr>
+                    <tr><td>16</td><td>15</td><td>256</td><td>225</td><td>240</td></tr>
+                    <tr><td>20</td><td>18</td><td>400</td><td>324</td><td>360</td></tr>
+                    <tr><td>24</td><td>20</td><td>576</td><td>400</td><td>480</td></tr>
+                    <tr><td>28</td><td>25</td><td>784</td><td>625</td><td>700</td></tr>
+                    <tr><td><strong>Σx = 100</strong></td><td><strong>Σy = 90</strong></td><td><strong>Σx² = 2160</strong></td><td><strong>Σy² = 1718</strong></td><td><strong>Σxy = 1924</strong></td></tr>
+                </tbody>
+            </table>
+            <p class="results">Coeficiente de Correlação (r) para Maçã ≈ 0.990</p>
+
+            <h3>🍌 Temperatura vs. Produção de Banana</h3>
+            <table>
+                <thead>
+                    <tr><th>X (Temp)</th><th>Y (Banana)</th><th>X²</th><th>Y²</th><th>XY</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>12</td><td>20</td><td>144</td><td>400</td><td>240</td></tr>
+                    <tr><td>16</td><td>25</td><td>256</td><td>625</td><td>400</td></tr>
+                    <tr><td>20</td><td>30</td><td>400</td><td>900</td><td>600</td></tr>
+                    <tr><td>24</td><td>35</td><td>576</td><td>1225</td><td>840</td></tr>
+                    <tr><td>28</td><td>40</td><td>784</td><td>1600</td><td>1120</td></tr>
+                    <tr><td><strong>Σx = 100</strong></td><td><strong>Σy = 150</strong></td><td><strong>Σx² = 2160</strong></td><td><strong>Σy² = 4750</strong></td><td><strong>Σxy = 3200</strong></td></tr>
+                </tbody>
+            </table>
+            <p class="results">Coeficiente de Correlação (r) para Banana = 1.0</p>
+
+            <h3>🍊 Temperatura vs. Produção de Laranja</h3>
+            <table>
+                <thead>
+                    <tr><th>X (Temp)</th><th>Y (Laranja)</th><th>X²</th><th>Y²</th><th>XY</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>12</td><td>25</td><td>144</td><td>625</td><td>300</td></tr>
+                    <tr><td>16</td><td>30</td><td>256</td><td>900</td><td>480</td></tr>
+                    <tr><td>20</td><td>35</td><td>400</td><td>1225</td><td>700</td></tr>
+                    <tr><td>24</td><td>40</td><td>576</td><td>1600</td><td>960</td></tr>
+                    <tr><td>28</td><td>50</td><td>784</td><td>2500</td><td>1400</td></tr>
+                    <tr><td><strong>Σx = 100</strong></td><td><strong>Σy = 180</strong></td><td><strong>Σx² = 2160</strong></td><td><strong>Σy² = 6850</strong></td><td><strong>Σxy = 3840</strong></td></tr>
+                </tbody>
+            </table>
+            <p class="results">Coeficiente de Correlação (r) para Laranja ≈ 0.986</p>
+        </section>
+
+        <section id="interpretacao">
+            <h2>3. Interpretação dos Coeficientes</h2>
+            <p>A interpretação da força da correlação é baseada na proximidade do valor de 'r' de +1 ou -1.</p>
+            <ul>
+                <li><strong>Maçã (r ≈ 0.990):</strong> Correlação positiva muito forte. A produção tende a aumentar consistentemente com a temperatura.</li>
+                <li><strong>Banana (r = 1.0):</strong> Correlação positiva perfeita. O aumento na produção é perfeitamente linear ao aumento da temperatura (nos dados hipotéticos).</li>
+                <li><strong>Laranja (r ≈ 0.986):</strong> Correlação positiva muito forte. O aumento da temperatura está fortemente associado ao aumento da produção.</li>
+            </ul>
+        </section>
+
+        <section id="graficos">
+            <h2>4. Representação Gráfica</h2>
+            <p>Os gráficos de dispersão a seguir mostram a temperatura no eixo X e a produção no eixo Y, identificando a tendência visual. A linha vermelha representa a reta de regressão, que mostra a tendência central dos dados.</p>
+            
+            <div class="chart-container">
+                <h3>Gráfico: Produção de Maçã vs. Temperatura</h3>
+                <canvas id="graficoMaca"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Gráfico: Produção de Banana vs. Temperatura</h3>
+                <canvas id="graficoBanana"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Gráfico: Produção de Laranja vs. Temperatura</h3>
+                <canvas id="graficoLaranja"></canvas>
+            </div>
+        </section>
+
+        <section id="analise">
+            <h2>5. Análise dos Resultados</h2>
+            
+            <h3>Qual fruta tem maior correlação positiva com a temperatura? </h3>
+            <p>A <strong>banana</strong> tem a maior correlação (r=1.0), indicando uma relação linear perfeita. Maçã (r≈0.990) e laranja (r≈0.986) também apresentam correlações positivas extremamente fortes.</p>
+
+            <h3>Existe correlação negativa? </h3>
+            <p>Não. Com base nos dados analisados, nenhuma fruta apresentou correlação negativa com a temperatura. Todas mostraram aumento de produção com o calor.</p>
+
+            <h3>Como aplicar essas informações na agricultura? </h3>
+            <p>Essa análise sugere que o plantio pode ser planejado para que as fases de maior desenvolvimento e maturação coincidam com os meses mais quentes, visando maximizar a produção. Se uma fruta tem correlação positiva forte com a temperatura, cultivá-la em períodos mais quentes pode aumentar o rendimento. Isso também pode justificar investimentos em tecnologias como estufas para controle de temperatura.</p>
+        </section>
+
+        <section id="conclusao">
+            <h2>6. Conclusão</h2>
+            <div class="conclusion">
+                <p>Este exercício demonstra como a análise estatística é fundamental para compreender o impacto de fatores ambientais, como a temperatura, na produção agrícola. A forte correlação positiva identificada para as três frutas permite que agricultores tomem decisões mais informadas, otimizando o planejamento de safras e o uso de tecnologias para maximizar a colheita e minimizar perdas.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Dados base
+        const temperaturas = [12, 16, 20, 24, 28];
+        const producaoMaca = [12, 15, 18, 20, 25];
+        const producaoBanana = [20, 25, 30, 35, 40];
+        const producaoLaranja = [25, 30, 35, 40, 50];
+
+        // Função para criar pontos a partir dos dados
+        function createDataPoints(x_values, y_values) {
+            return x_values.map((val, index) => ({x: val, y: y_values[index]}));
+        }
+
+        const dataPointsMaca = createDataPoints(temperaturas, producaoMaca);
+        const dataPointsBanana = createDataPoints(temperaturas, producaoBanana);
+        const dataPointsLaranja = createDataPoints(temperaturas, producaoLaranja);
+        
+        // Dados da Linha de Regressão (y = a + bx)
+        // Maçã: y = 2.5 + 0.775x
+        const regressaoMaca = temperaturas.map(x => ({x: x, y: 2.5 + 0.775 * x}));
+        // Banana: y = 5 + 1.25x
+        const regressaoBanana = temperaturas.map(x => ({x: x, y: 5 + 1.25 * x}));
+        // Laranja: y = 6 + 1.5x
+        const regressaoLaranja = temperaturas.map(x => ({x: x, y: 6 + 1.5 * x}));
+
+
+        // Função para criar um gráfico
+        function createChart(canvasId, label, scatterData, lineData) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                data: {
+                    datasets: [{
+                        type: 'scatter',
+                        label: 'Produção Real',
+                        data: scatterData,
+                        backgroundColor: 'rgba(52, 152, 219, 0.8)'
+                    }, {
+                        type: 'line',
+                        label: 'Linha de Regressão',
+                        data: lineData,
+                        borderColor: 'rgba(231, 76, 60, 0.8)',
+                        backgroundColor: 'rgba(231, 76, 60, 0.8)',
+                        fill: false,
+                        pointRadius: 0,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            title: {
+                                display: true,
+                                text: 'Temperatura (°C)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Produção (toneladas)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Criar os gráficos
+        createChart('graficoMaca', 'Produção de Maçã', dataPointsMaca, regressaoMaca);
+        createChart('graficoBanana', 'Produção de Banana', dataPointsBanana, regressaoBanana);
+        createChart('graficoLaranja', 'Produção de Laranja', dataPointsLaranja, regressaoLaranja);
+
+    </script>
+
+</body>
+</html>
